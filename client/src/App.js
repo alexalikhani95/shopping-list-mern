@@ -26,7 +26,7 @@ const App = () => {
       <div className="inputs">
         <input
           type="text"
-          placeholder="Product name"
+          placeholder="Item name"
           onChange={(event) => {
             setName(event.target.value);
           }}
@@ -41,13 +41,16 @@ const App = () => {
 
         <button onClick={addProduct}>Add Product</button>
       </div>
-      {itemsList.map((item) => {
-        return (
-          <div key={item.name + 1}>
-            {item.name} {item.price}
-          </div>
-        );
-      })}
+
+      <div className="listOfProducts">
+        {itemsList.map((item) => {
+          return (
+            <div key={item.name + 1} className="product">
+              <h3>Item name: {item.name}</h3><h3>Price £{item.price}</h3>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

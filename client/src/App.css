@@ -42,3 +42,25 @@ body {
   cursor: pointer;
   background-color: rgb(45, 85, 29);
 }
+
+.product {
+  width: 600px;
+  height: 60px;
+  background-color: rgb(33, 63, 21);
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  margin: 10px;
+}
+
+.product h3 {
+  margin-left: 15px;
+}
+
+.listOfProducts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
