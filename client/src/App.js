@@ -8,7 +8,11 @@ const App = () => {
   const [itemsList, setItemsList] = useState([]);
 
   const addProduct = () => {
-    Axios.post("http://localhost:5000/addproduct", { name: name, price: price });
+    // Set the items list to an array with the existing list of items + the new created item
+    //This helps display newly added product on page without having to refresh
+    Axios.post("http://localhost:5000/addproduct", { name: name, price: price }).then(() => {
+      setItemsList([...itemsList, { name: name, price: price }]);
+    });
   };
 
   useEffect(() => {
@@ -46,7 +50,8 @@ const App = () => {
         {itemsList.map((item) => {
           return (
             <div key={item.name + 1} className="product">
-              <h3>Item name: {item.name}</h3><h3>Price £{item.price}</h3>
+              <h3>Item name: {item.name}</h3>
+              <h3>Price £{item.price}</h3>
             </div>
           );
         })}
