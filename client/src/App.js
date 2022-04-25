@@ -3,7 +3,10 @@ import "./App.css";
 const App = () => {
   return (
     <div className="App">
-      <h1>Shopping list</h1>
+      <div className="inputs">
+      <input type="text" />
+      <input type="number" />
+      </div>
     </div>
   );
 };
