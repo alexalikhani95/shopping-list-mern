@@ -2,19 +2,27 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const app = express();
+const cors = require("cors");
 const PORT = process.env.PORT || 8000;
 const ItemModel = require("./models/Items");
+
+app.use(cors());
+app.use(express.json()); // Allows the server to recieve json
 
 //Database Connection
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 
-app.get("/insert", async (req, res) => { // Going to http://localhost:5000/insert will manually insert this data into teh database
-  const item = new ItemModel({ name: "Blueberries", price: 3 });
+app.post("/addproduct", async (req, res) => {
+  const name = req.body.name
+  const price = req.body.price
+
+  const item = new ItemModel({ name: name, price: price });
   await item.save();
-  res.send("Inserted Data!");
+  res.send("Product successfully added");
 });
 
-app.get("/read", async (req, res) => { // Going to http://localhost:5000/read will display an array of the items
+app.get("/read", async (req, res) => {
+  // Going to http://localhost:5000/read will display an array of the items
   ItemModel.find({}, (err, result) => {
     if (err) {
       res.send(err);

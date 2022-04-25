@@ -1,22 +1,29 @@
 import "./App.css";
 import { useState } from "react";
+import Axios from "axios";
 
 const App = () => {
-  const [product, setProduct] = useState("");
+  const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
 
   const addProduct = () => {
-    alert(product + " " + price)
-  }
+    Axios.post("http://localhost:5000/addproduct", { name: name, price: price })
+      .then(() => {
+        alert("Product added!");
+      })
+      .catch(() => {
+        alert("Product not added");
+      });
+  };
 
   return (
     <div className="App">
       <div className="inputs">
         <input
           type="text"
-          placeholder="Product"
+          placeholder="Product name"
           onChange={(event) => {
-            setProduct(event.target.value);
+            setName(event.target.value);
           }}
         />
         <input
