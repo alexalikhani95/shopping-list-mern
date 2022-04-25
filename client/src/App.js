@@ -1,20 +1,25 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
 
 const App = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
+  const [itemsList, setItemsList] = useState([]);
 
   const addProduct = () => {
-    Axios.post("http://localhost:5000/addproduct", { name: name, price: price })
-      .then(() => {
-        alert("Product added!");
+    Axios.post("http://localhost:5000/addproduct", { name: name, price: price });
+  };
+
+  useEffect(() => {
+    Axios.get("http://localhost:5000/read")
+      .then((response) => {
+        setItemsList(response.data);
       })
       .catch(() => {
-        alert("Product not added");
+        console.log("Error");
       });
-  };
+  }, []);
 
   return (
     <div className="App">
@@ -36,6 +41,13 @@ const App = () => {
 
         <button onClick={addProduct}>Add Product</button>
       </div>
+      {itemsList.map((item) => {
+        return (
+          <div key={item.name + 1}>
+            {item.name} {item.price}
+          </div>
+        );
+      })}
     </div>
   );
 };
