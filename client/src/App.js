@@ -49,9 +49,13 @@ const App = () => {
       <div className="listOfProducts">
         {itemsList.map((item) => {
           return (
-            <div key={item.name + 1} className="product">
-              <h3>Item name: {item.name}</h3>
-              <h3>Price £{item.price}</h3>
+            <div className="productContainer">
+              <div key={item.name + 1} className="product">
+                <h3>Item name: {item.name}</h3>
+                <h3>Price £{item.price}</h3>
+              </div>
+              <button>Update</button>
+              <button id="removeBtn">Delete</button>
             </div>
           );
         })}
