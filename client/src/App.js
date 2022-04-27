@@ -15,6 +15,12 @@ const App = () => {
     });
   };
 
+  const updateProduct = (id) => {
+    const newPrice = prompt("Enter new price: ");
+
+    Axios.put("http://localhost:5000/update", { newPrice: newPrice, id: id });
+  };
+
   useEffect(() => {
     Axios.get("http://localhost:5000/read")
       .then((response) => {
@@ -54,7 +60,13 @@ const App = () => {
                 <h3>Item name: {item.name}</h3>
                 <h3>Price £{item.price}</h3>
               </div>
-              <button>Update</button>
+              <button
+                onClick={() => {
+                  updateProduct(item._id);
+                }}
+              >
+                Update
+              </button>
               <button id="removeBtn">Delete</button>
             </div>
           );

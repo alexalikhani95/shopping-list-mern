@@ -32,6 +32,22 @@ app.get("/read", async (req, res) => {
   });
 });
 
+app.put("/update", async (req, res) => {
+  const newPrice = req.body.newPrice
+  const id = req.body.id
+
+  try {
+    await ItemModel.findById(id, (error, itemToUpdate) => {
+      itemToUpdate.price = newPrice;
+      itemToUpdate.save()
+    })
+  } catch(err) {
+    console.log(err)
+  }
+
+  res.send('Item Updated')
+})
+
 app.listen(PORT, () => {
   console.log(`Server connected on port ${PORT}`);
 });
