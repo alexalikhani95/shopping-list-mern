@@ -18,7 +18,13 @@ const App = () => {
   const updateProduct = (id) => {
     const newPrice = prompt("Enter new price: ");
 
-    Axios.put("http://localhost:5000/update", { newPrice: newPrice, id: id });
+    Axios.put("http://localhost:5000/update", { newPrice: newPrice, id: id }).then(() => {
+      setItemsList(
+        itemsList.map((item) => {
+          return item._id === id ? { _id: id, name: item.name, price: newPrice } : item;
+        })
+      );
+    });
   };
 
   useEffect(() => {
