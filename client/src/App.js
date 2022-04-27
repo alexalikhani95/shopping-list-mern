@@ -28,7 +28,15 @@ const App = () => {
   };
 
   const deleteProduct = (id) => {
-    Axios.delete(`http://localhost:5000/delete/${id}`);
+    Axios.delete(`http://localhost:5000/delete/${id}`).then(
+      () => {
+        setItemsList(
+          itemsList.filter((item) => {
+            return item._id !== id;
+          })
+        );
+      }
+    );
   };
 
   useEffect(() => {
