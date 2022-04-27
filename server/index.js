@@ -48,6 +48,12 @@ app.put("/update", async (req, res) => {
   res.send('Item Updated')
 })
 
+app.delete('/delete/:id', async (req, res) => {
+  const id = req.params.id
+  await ItemModel.findByIdAndRemove(id).exec()
+  res.send("item deleted")
+})
+
 app.listen(PORT, () => {
   console.log(`Server connected on port ${PORT}`);
 });

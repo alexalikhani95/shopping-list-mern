@@ -27,6 +27,10 @@ const App = () => {
     });
   };
 
+  const deleteProduct = (id) => {
+    Axios.delete(`http://localhost:5000/delete/${id}`);
+  };
+
   useEffect(() => {
     Axios.get("http://localhost:5000/read")
       .then((response) => {
@@ -73,7 +77,14 @@ const App = () => {
               >
                 Update
               </button>
-              <button id="removeBtn">Delete</button>
+              <button
+                id="removeBtn"
+                onClick={() => {
+                  deleteProduct(item._id);
+                }}
+              >
+                Delete
+              </button>
             </div>
           );
         })}
