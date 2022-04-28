@@ -10,8 +10,8 @@ const App = () => {
   const addProduct = () => {
     // Set the items list to an array with the existing list of items + the new created item
     //This helps display newly added product on page without having to refresh
-    Axios.post("http://localhost:5000/addproduct", { name: name, price: price }).then(() => {
-      setItemsList([...itemsList, { name: name, price: price }]);
+    Axios.post("http://localhost:5000/addproduct", { name: name, price: price }).then((response) => {
+      setItemsList([...itemsList, { _id: response.data._id, name: name, price: price }]);
     });
   };
 
