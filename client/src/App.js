@@ -10,7 +10,7 @@ const App = () => {
   const addProduct = () => {
     // Set the items list to an array with the existing list of items + the new created item
     //This helps display newly added product on page without having to refresh
-    Axios.post("http://localhost:5000/addproduct", { name: name, price: price }).then((response) => {
+    Axios.post("hhttps://mern-shopping-items-list.herokuapp.com/addproduct", { name: name, price: price }).then((response) => {
       setItemsList([...itemsList, { _id: response.data._id, name: name, price: price }]);
     });
   };
@@ -18,7 +18,7 @@ const App = () => {
   const updateProduct = (id) => {
     const newPrice = prompt("Enter new price: ");
 
-    Axios.put("http://localhost:5000/update", { newPrice: newPrice, id: id }).then(() => {
+    Axios.put("https://mern-shopping-items-list.herokuapp.com/update", { newPrice: newPrice, id: id }).then(() => {
       setItemsList(
         itemsList.map((item) => {
           return item._id === id ? { _id: id, name: item.name, price: newPrice } : item;
