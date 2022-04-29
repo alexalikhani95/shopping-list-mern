@@ -10,7 +10,7 @@ const App = () => {
   const addProduct = () => {
     // Set the items list to an array with the existing list of items + the new created item
     //This helps display newly added product on page without having to refresh
-    Axios.post("hhttps://mern-shopping-items-list.herokuapp.com/addproduct", { name: name, price: price }).then((response) => {
+    Axios.post("https://mern-shopping-items-list.herokuapp.com/addproduct", { name: name, price: price }).then((response) => {
       setItemsList([...itemsList, { _id: response.data._id, name: name, price: price }]);
     });
   };
@@ -28,7 +28,7 @@ const App = () => {
   };
 
   const deleteProduct = (id) => {
-    Axios.delete(`http://localhost:5000/delete/${id}`).then(
+    Axios.delete(`https://mern-shopping-items-list.herokuapp.com/${id}`).then(
       () => {
         setItemsList(
           itemsList.filter((item) => {
@@ -40,7 +40,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    Axios.get("http://localhost:5000/read")
+    Axios.get("https://mern-shopping-items-list.herokuapp.com/read")
       .then((response) => {
         setItemsList(response.data);
       })
