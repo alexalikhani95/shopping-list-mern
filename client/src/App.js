@@ -28,7 +28,7 @@ const App = () => {
   };
 
   const deleteProduct = (id) => {
-    Axios.delete(`https://mern-shopping-items-list.herokuapp.com/${id}`).then(
+    Axios.delete(`https://mern-shopping-items-list.herokuapp.com/delete/${id}`).then(
       () => {
         setItemsList(
           itemsList.filter((item) => {
